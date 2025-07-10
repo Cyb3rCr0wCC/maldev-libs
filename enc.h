@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdint.h>
 
+
 // Base64 character set
 const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -97,4 +98,39 @@ unsigned char *base64_decode(const char *input, size_t *output_length) {
     }
 
     return decoded_data;
+}
+
+char* Encrypt(char* input){
+    char *output = NULL;
+    char *ciphertext = NULL;
+
+    size_t input_length = strlen(input);
+    
+    // Allocate memory for the XORed output. In a simple XOR, the output size is the same as the input.
+    output = (char *)malloc(input_length + 1);
+    encryptDecrypt(input, output);
+
+    // Base64 encode the ciphertext
+    ciphertext = base64_encode((const unsigned char *)output, input_length);
+    free(output);
+    return ciphertext;
+    //free(ciphertext);
+
+}
+
+char* Decode(char* input){
+    char *plaintext = NULL;
+
+    size_t decoded_length;
+    unsigned char *decoded_output = base64_decode(input, &decoded_length);
+
+    // Allocate memory for the plaintext (after XOR decryption).
+    plaintext = (char *)malloc(decoded_length + 1);
+    encryptDecrypt((char *)decoded_output, plaintext);
+
+    plaintext[decoded_length] = '\0';
+
+    free(decoded_output);
+
+    return plaintext;
 }
