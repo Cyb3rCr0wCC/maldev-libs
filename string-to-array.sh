@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Function to convert a string to a character array
-# Usage: string_to_char_array "your string here"
 string_to_char_array() {
     local input_string="$1"
     local -a char_array=() # Declare an empty array
@@ -38,6 +36,3 @@ MY_STRING="$1"
 echo "Original string: \"$MY_STRING\""
 echo "Converted array format:"
 string_to_char_array "$MY_STRING"
-
-# The previous hardcoded example is removed as the script now expects user input.
-# If you want to keep additional examples, you can add them back using fixed strings.
