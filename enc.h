@@ -134,7 +134,7 @@ char* Encrypt(char* input){
     return ciphertext_b64; // Caller is responsible for freeing this memory
 }
 
-char* Decode(char* input){
+char* Decrypt(char* input){
     char *plaintext = NULL;
     size_t decoded_b64_length; // This will be the actual length of the binary data after Base64 decoding
     unsigned char *decoded_b64_output = base64_decode(input, &decoded_b64_length);
